@@ -1,0 +1,20 @@
+create table customer(
+cust_id number(3),
+cust_fname varchar2(10),
+cust_lname varchar2(10),
+territory varchar2(10),
+credit_limit number(10,2),
+mgr_id number(3),
+dob date,
+m_status varchar2(10),
+gender varchar2(1),
+income number(10,2)
+);
+2)
+Alter table customer add stay_from_year number(4);
+3)
+update customer set stay_from_year = 2003;
+5)
+delete from customer where cust_fname='Meg';
+
+

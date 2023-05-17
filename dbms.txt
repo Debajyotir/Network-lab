@@ -1,0 +1,185 @@
+http://127.0.0.1:8080/apex/f?p=4500:1003:585590571572283::NO:::
+2)
+create table CArea(
+radius number(4),
+area number(8,2)
+);
+
+declare
+r CArea.area%type;
+i number(4) := 3;
+c number(8,2);
+begin
+loop
+c := (3.14*i*i);
+insert into CArea values(i,c);
+i:=i+1;
+exit when i>=8;
+end loop;
+end;
+/
+----------------------------------------------------
+3)
+declare
+
+begin
+dbms_output.put_line(sysdate);
+end;
+/
+----------------------------------------------------
+
+4)
+declare
+n number;
+ans number:=1;
+begin
+n:=:n;
+for i in 2..n loop
+ans:=ans*i;
+end loop;
+dbms_output.put_line(ans);
+end;
+/
+----------------------------------------------------
+5)
+declare
+n number;
+j number := 1;
+begin
+n:=:n;
+for i in 2..(n-1) loop
+if mod(n,i)=0 then
+dbms_output.put_line('not prime');
+j:=0;
+exit;
+end if;
+end loop;
+if j=1 then
+dbms_output.put_line('prime');
+end if;
+end;
+/
+--------------------------------------------------------
+6)
+declare
+n integer;
+j integer := 0;
+begin
+n:=:n;
+while n>1 loop
+j:=(j*10)+(n mod 10);
+n:=n/10;
+end loop;
+dbms_output.put_line(j);
+end;
+/
+-----------------------------------------------------------
+10)
+declare
+a integer;
+b integer;
+c integer;
+f integer :=1;
+begin
+a:=:a;
+b:=:b;
+c := least(a,b);
+for i in 2..c loop
+if mod(a,i)=0 and mod(b,i)=0 then
+dbms_output.put_line('Not Co prime');
+f:=0;
+exit;
+end if;
+end loop;
+if f=1 then
+dbms_output.put_line('Co Prime');
+end if;
+end;
+--------------------------------------------------
+
+ASS-8
+------
+1)
+declare
+n integer;
+begin
+n:=:n;
+if n>90 then
+dbms_output.put_line('AA');
+elsif n>80 then
+dbms_output.put_line('A+');
+elsif n>70 then
+dbms_output.put_line('A');
+elsif n>60 then
+dbms_output.put_line('B+');
+elsif n>50 then
+dbms_output.put_line('B');
+elsif n>40 then
+dbms_output.put_line('C+');
+elsif n>30 then
+dbms_output.put_line('c');
+else
+dbms_output.put_line('F');
+end if;
+end;
+/
+-------------------------------
+4)
+declare
+i integer:=0;
+j integer:=1;
+temp integer;
+begin
+dbms_output.put_line('1');
+while i+j<=20000 loop
+temp:=i+j;
+dbms_output.put_line(temp);
+i:=j;
+j:=temp;
+end loop;
+end;
+/
+----------------------------------
+5)
+CREATE TABLE random_num(
+	rand_no number(20)
+);
+
+declare
+	n random_num.rand_no%type;
+	begin
+		for i in 1..7
+		loop
+			n:=dbms_random.random();
+			insert into random_num values(n);
+		end loop;
+	end;
+/
+---------------------------------------------------------------
+
+declare
+n integer;
+temp integer;
+cnt integer:=0;
+i integer:=0;
+begin
+n:=:n;
+temp:=n;
+while temp>0 loop
+cnt:=cnt+1;
+temp:=trunc(temp/10);
+end loop;
+temp:=n;
+while temp>0 loop
+i:=i+power((temp mod 10),cnt);
+temp:=trunc(temp/10);
+end loop;
+if n=i then
+dbms_output.put_line('Armstrong');
+else
+dbms_output.put_line('Not');
+end if;
+end;
+/
+
+---------------------------------------------
