@@ -183,3 +183,16 @@ end;
 /
 
 ---------------------------------------------
+declare
+str varchar(12);
+n integer;
+ans varchar(12);
+begin
+str:='&str';
+n:=length(str);
+for i in reverse 1..n loop
+ans := (ans || substr(str,i,1));
+end loop;
+dbms_output.put_line(ans); 
+end;
+/
